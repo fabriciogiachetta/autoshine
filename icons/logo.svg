@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E2A55"/><stop offset="1" stop-color="#081631"/></linearGradient>
+    <linearGradient id="azul" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4DA3FF"/><stop offset="1" stop-color="#0F5BD6"/></linearGradient>
+    <linearGradient id="prata" gradientUnits="userSpaceOnUse" x1="0" y1="205" x2="0" y2="330"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C9D6EA"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#fundo)"/>
+  <circle cx="256" cy="256" r="168" fill="none" stroke="url(#azul)" stroke-width="14"/>
+  <g fill="none" stroke="url(#prata)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M156 300 H138 C126 300 122 290 126 280 C129 272 136 268 146 266 L196 256 L236 222 C246 214 258 210 272 210 L316 210 C330 210 342 216 352 226 L382 254 C396 258 404 268 402 282 C401 292 396 300 386 300 H362"/>
+    <path d="M216 300 H296"/>
+    <path d="M246 222 L240 256 M300 212 V256 M200 256 H372"/>
+  </g>
+  <circle cx="186" cy="300" r="24" fill="none" stroke="url(#prata)" stroke-width="14"/>
+  <circle cx="326" cy="300" r="24" fill="none" stroke="url(#prata)" stroke-width="14"/>
+  <path d="M330 150 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8 z" fill="#6fb2ff"/>
+</svg>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EstetiApp</title>
+  <meta name="description" content="Gestão de estética automotiva no celular: agenda, vendas, clientes, produtos, precificação e estoque.">
+  <meta name="theme-color" content="#0B1A33">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== LOGIN ===== -->
+  <section id="tela-login" class="login-wrap">
+    <form id="form-login" class="login-card">
+      <img src="icons/logo.svg" alt="" class="login-icone">
+      <h1 class="marca-nome"><b>Esteti</b><span>App</span></h1>
+      <p class="marca-tag">ESTÉTICA AUTOMOTIVA</p>
+      <p class="muted" id="login-sub">Entre para acessar o sistema</p>
+      <label>Usuário <input name="usuario" required autocomplete="username" autocapitalize="none"></label>
+      <label>Senha <input name="senha" type="password" required autocomplete="current-password"></label>
+      <button class="btn primary full grande" type="submit" id="btn-login">Entrar</button>
+      <p class="erro" id="login-erro"></p>
+    </form>
+  </section>
+
+  <!-- ===== APP ===== -->
+  <div id="app" class="app hidden">
+    <header class="topo">
+      <button class="icone-btn hidden" id="btn-voltar" aria-label="Voltar">‹</button>
+      <h1 id="titulo">Início</h1>
+      <button class="icone-btn hidden" id="btn-instalar" aria-label="Instalar app">⬇</button>
+    </header>
+
+    <main class="conteudo">
+
+      <!-- Início -->
+      <section id="view-inicio" class="view">
+        <p class="saudacao" id="saudacao"></p>
+        <div class="stats">
+          <div class="stat destaque"><span>Hoje</span><strong id="st-hoje">R$ 0,00</strong><small id="st-hoje-qtd"></small></div>
+          <div class="stat"><span>Mês</span><strong id="st-mes">R$ 0,00</strong></div>
+          <div class="stat"><span>Lucro do mês</span><strong id="st-lucro">R$ 0,00</strong></div>
+        </div>
+        <div class="atalhos">
+          <a href="#vender" class="atalho">🧾<span>Vender</span></a>
+          <button class="atalho" data-novo="agendamento">📅<span>Agendar</span></button>
+          <button class="atalho" data-novo="cliente">👤<span>Cliente</span></button>
+          <a href="#estoque" class="atalho">📦<span>Estoque</span></a>
+        </div>
+        <h2>Agenda de hoje</h2>
+        <div id="inicio-agenda" class="lista-cards"></div>
+        <h2>Estoque baixo</h2>
+        <div id="inicio-estoque" class="lista-cards"></div>
+      </section>
+
+      <!-- Agenda -->
+      <section id="view-agenda" class="view">
+        <div class="dias" id="dias"></div>
+        <div id="lista-agenda" class="lista-cards"></div>
+        <button class="fab" data-novo="agendamento" aria-label="Novo agendamento">+</button>
+      </section>
+
+      <!-- Vender -->
+      <section id="view-vender" class="view">
+        <label>Cliente
+          <select id="venda-cliente"></select>
+        </label>
+        <input class="busca" id="busca-venda" type="search" placeholder="Buscar serviço ou produto…">
+        <div id="venda-itens" class="lista-cards compacta"></div>
+        <div class="carrinho-barra" id="carrinho-barra">
+          <div><small id="cb-qtd">0 itens</small><strong id="cb-total">R$ 0,00</strong></div>
+          <button class="btn primary" id="btn-ver-carrinho">Fechar venda ›</button>
+        </div>
+      </section>
+
+      <!-- Clientes -->
+      <section id="view-clientes" class="view">
+        <input class="busca" id="busca-clientes" type="search" placeholder="Buscar nome, telefone ou placa…">
+        <div id="lista-clientes" class="lista-cards"></div>
+        <button class="fab" data-novo="cliente" aria-label="Novo cliente">+</button>
+      </section>
+
+      <!-- Mais -->
+      <section id="view-mais" class="view">
+        <div class="menu">
+          <a href="#produtos">🧴 <span>Serviços e produtos<small>Cadastro e precificação</small></span>›</a>
+          <a href="#estoque">📦 <span>Estoque<small>Entradas, saídas e alertas</small></span>›</a>
+          <a href="#historico">📜 <span>Histórico de vendas<small>Consultar e cancelar vendas</small></span>›</a>
+          <button data-acao="empresa">🏢 <span>Dados da empresa<small>Nome usado nos recibos</small></span>›</button>
+          <button data-acao="exportar">💾 <span>Fazer backup<small>Salvar todos os dados num arquivo</small></span>›</button>
+          <button data-acao="importar">📂 <span>Restaurar backup<small>Carregar um arquivo de backup</small></span>›</button>
+          <a href="privacidade.html" target="_blank">🔒 <span>Política de privacidade<small>Como seus dados são tratados</small></span>›</a>
+          <button data-acao="sair" class="perigo">🚪 <span>Sair<small id="usuario-logado"></small></span>›</button>
+        </div>
+        <input type="file" id="arquivo-backup" accept="application/json,.json" hidden>
+      </section>
+
+      <!-- Produtos -->
+      <section id="view-produtos" class="view">
+        <input class="busca" id="busca-produtos" type="search" placeholder="Buscar…">
+        <div id="lista-produtos" class="lista-cards"></div>
+        <button class="fab" data-novo="produto" aria-label="Novo item">+</button>
+      </section>
+
+      <!-- Estoque -->
+      <section id="view-estoque" class="view">
+        <div id="lista-estoque" class="lista-cards"></div>
+      </section>
+
+      <!-- Histórico -->
+      <section id="view-historico" class="view">
+        <div class="filtros" id="filtro-periodo">
+          <button data-periodo="hoje">Hoje</button>
+          <button data-periodo="7">7 dias</button>
+          <button data-periodo="mes" class="ativo">Mês</button>
+          <button data-periodo="tudo">Tudo</button>
+        </div>
+        <p class="resumo-periodo" id="resumo-periodo"></p>
+        <div id="lista-historico" class="lista-cards"></div>
+      </section>
+    </main>
+
+    <nav class="abas">
+      <a href="#inicio" data-aba="inicio"><i>🏠</i>Início</a>
+      <a href="#agenda" data-aba="agenda"><i>📅</i>Agenda</a>
+      <a href="#vender" data-aba="vender" class="aba-vender"><i>🧾</i>Vender</a>
+      <a href="#clientes" data-aba="clientes"><i>👤</i>Clientes</a>
+      <a href="#mais" data-aba="mais"><i>☰</i>Mais</a>
+    </nav>
+  </div>
+
+  <!-- ===== FOLHAS (modais) ===== -->
+  <dialog id="modal-cliente" class="folha">
+    <form method="dialog" id="form-cliente">
+      <div class="folha-topo"><h2>Cliente</h2><button class="icone-btn" value="cancel" formnovalidate aria-label="Fechar">✕</button></div>
+      <input type="hidden" name="id">
+      <label>Nome <input name="nome" required></label>
+      <label>WhatsApp <input name="telefone" type="tel" inputmode="tel" placeholder="(11) 99999-9999"></label>
+      <div class="row">
+        <label class="grow">Veículo <input name="veiculo" placeholder="Ex.: Civic preto"></label>
+        <label class="w110">Placa <input name="placa" autocapitalize="characters"></label>
+      </div>
+      <label>Observações <textarea name="obs" rows="2"></textarea></label>
+      <button class="btn primary full grande" value="ok">Salvar</button>
+    </form>
+  </dialog>
+
+  <dialog id="modal-ver-cliente" class="folha">
+    <div class="folha-conteudo">
+      <div class="folha-topo"><h2 id="vc-nome"></h2><button class="icone-btn" data-fechar aria-label="Fechar">✕</button></div>
+      <p class="muted" id="vc-info"></p>
+      <div class="acoes-linha">
+        <a class="btn whats" id="vc-whats" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" id="vc-ligar">Ligar</a>
+        <button class="btn ghost" id="vc-editar">Editar</button>
+      </div>
+      <div class="stats duas">
+        <div class="stat"><span>Total gasto</span><strong id="vc-total"></strong></div>
+        <div class="stat"><span>Visitas</span><strong id="vc-visitas"></strong></div>
+      </div>
+      <h3>Últimos serviços</h3>
+      <div id="vc-historico" class="lista-cards compacta"></div>
+      <button class="btn danger full" id="vc-excluir">Excluir cliente</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-produto" class="folha">
+    <form method="dialog" id="form-produto">
+      <div class="folha-topo"><h2>Serviço / produto</h2><button class="icone-btn" value="cancel" formnovalidate aria-label="Fechar">✕</button></div>
+      <input type="hidden" name="id">
+      <div class="segmento">
+        <label><input type="radio" name="tipo" value="servico" checked><span>Serviço</span></label>
+        <label><input type="radio" name="tipo" value="produto"><span>Produto</span></label>
+      </div>
+      <label>Nome <input name="nome" required></label>
+      <fieldset class="precificacao">
+        <legend>Precificação</legend>
+        <div class="row">
+          <label class="grow">Custo (R$) <input name="custo" type="number" inputmode="decimal" min="0" step="0.01" value="0"></label>
+          <label class="grow">Taxas (%) <input name="despesas" type="number" inputmode="decimal" min="0" max="99" step="0.1" value="10"></label>
+          <label class="grow">Margem (%) <input name="margem" type="number" inputmode="decimal" min="0" max="99" step="0.1" value="40"></label>
+        </div>
+        <button type="button" class="sugestao" id="btn-usar-sugerido">Preço sugerido: <strong id="preco-sugerido">R$ 0,00</strong> <span>usar</span></button>
+        <label>Preço de venda (R$) <input name="preco" type="number" inputmode="decimal" min="0" step="0.01" required></label>
+        <p class="muted" id="margem-real"></p>
+      </fieldset>
+      <div class="row so-produto">
+        <label class="grow">Estoque <input name="estoque" type="number" inputmode="numeric" step="1" value="0"></label>
+        <label class="grow">Mínimo <input name="minimo" type="number" inputmode="numeric" min="0" step="1" value="2"></label>
+        <label class="w90">Unid. <input name="unidade" value="un"></label>
+      </div>
+      <button class="btn primary full grande" value="ok">Salvar</button>
+      <button class="btn danger full hidden" value="excluir" formnovalidate id="btn-excluir-produto">Excluir item</button>
+    </form>
+  </dialog>
+
+  <dialog id="modal-agendamento" class="folha">
+    <form method="dialog" id="form-agendamento">
+      <div class="folha-topo"><h2>Agendamento</h2><button class="icone-btn" value="cancel" formnovalidate aria-label="Fechar">✕</button></div>
+      <input type="hidden" name="id">
+      <label>Cliente <select name="clienteId" id="ag-cliente" required></select></label>
+      <label>Serviço <select name="servicoId" id="ag-servico" required></select></label>
+      <div class="row">
+        <label class="grow">Data <input name="data" type="date" required></label>
+        <label class="grow">Hora <input name="hora" type="time" required></label>
+      </div>
+      <label>Observações <textarea name="obs" rows="2" placeholder="Ex.: buscar o carro às 17h"></textarea></label>
+      <button class="btn primary full grande" value="ok">Salvar</button>
+      <button class="btn danger full hidden" value="excluir" formnovalidate id="btn-excluir-ag">Excluir agendamento</button>
+    </form>
+  </dialog>
+
+  <dialog id="modal-carrinho" class="folha">
+    <div class="folha-conteudo">
+      <div class="folha-topo"><h2>Fechar venda</h2><button class="icone-btn" data-fechar aria-label="Fechar">✕</button></div>
+      <div id="carrinho" class="lista-cards compacta"></div>
+      <div class="linha"><span>Subtotal</span><span id="v-subtotal">R$ 0,00</span></div>
+      <div class="row">
+        <label class="grow">Desconto (R$) <input id="venda-desconto" type="number" inputmode="decimal" min="0" step="0.01" value="0"></label>
+        <label class="grow">Pagamento
+          <select id="venda-pagto"><option>Pix</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option></select>
+        </label>
+      </div>
+      <label>Observações <input id="venda-obs" placeholder="Opcional"></label>
+      <div class="linha total"><span>Total</span><span id="v-total">R$ 0,00</span></div>
+      <button class="btn primary full grande" id="btn-finalizar">Confirmar venda</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-recibo" class="folha">
+    <div class="folha-conteudo centro">
+      <div class="check">✓</div>
+      <h2>Venda registrada!</h2>
+      <p class="total-grande" id="recibo-total"></p>
+      <a class="btn whats full grande hidden" id="recibo-whats" target="_blank" rel="noopener">Enviar recibo no WhatsApp</a>
+      <button class="btn ghost full" data-fechar>Fechar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-empresa" class="folha">
+    <form method="dialog" id="form-empresa">
+      <div class="folha-topo"><h2>Dados da empresa</h2><button class="icone-btn" value="cancel" formnovalidate aria-label="Fechar">✕</button></div>
+      <label>Nome da estética <input name="nome" placeholder="Ex.: Brilho Total Estética Automotiva"></label>
+      <label>Chave Pix (aparece no recibo) <input name="pix"></label>
+      <button class="btn primary full grande" value="ok">Salvar</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
