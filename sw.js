@@ -1,6 +1,6 @@
 // Service worker: deixa o app abrir mesmo sem internet.
 // Rede primeiro (para pegar atualizações); se estiver offline, usa a cópia salva.
-const CACHE = 'estetiapp-v4';
+const CACHE = 'autoshine-v5';
 const ARQUIVOS = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/logo.svg'];
 
 self.addEventListener('install', (e) => {

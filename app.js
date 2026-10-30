@@ -1,4 +1,4 @@
-/* EstetiApp — gestão de estética automotiva no celular (PWA).
+/* Auto Shine — gestão de estética automotiva no celular (PWA).
  * Os dados ficam no aparelho (localStorage). Para vários usuários/aparelhos
  * com os mesmos dados, troque a camada "db" por um backend (ex.: Supabase).
  */
@@ -610,13 +610,13 @@ $('#modal-empresa').addEventListener('close', () => {
 });
 
 async function exportar() {
-  const dados = { app: 'EstetiApp', versao: 2, criadoEm: new Date().toISOString() };
+  const dados = { app: 'AutoShine', versao: 2, criadoEm: new Date().toISOString() };
   for (const k of CHAVES_BACKUP) dados[k] = db.get(k, null);
-  const nome = `estetiapp-backup-${diaISO()}.json`;
+  const nome = `autoshine-backup-${diaISO()}.json`;
   const arquivo = new File([JSON.stringify(dados, null, 2)], nome, { type: 'application/json' });
   // No celular, abre o menu de compartilhar (Drive, WhatsApp, e-mail…)
   if (navigator.canShare?.({ files: [arquivo] })) {
-    try { await navigator.share({ files: [arquivo], title: 'Backup EstetiApp' }); return; } catch (e) { if (e.name === 'AbortError') return; }
+    try { await navigator.share({ files: [arquivo], title: 'Backup Auto Shine' }); return; } catch (e) { if (e.name === 'AbortError') return; }
   }
   const a = document.createElement('a');
   a.href = URL.createObjectURL(arquivo);
@@ -632,7 +632,7 @@ $('#arquivo-backup').addEventListener('change', async (e) => {
   if (!arq) return;
   try {
     const dados = JSON.parse(await arq.text());
-    if (!['EstetiApp', 'AutoGestor'].includes(dados.app) || !Array.isArray(dados.clientes)) throw new Error();
+    if (!['AutoShine', 'EstetiApp', 'AutoGestor'].includes(dados.app) || !Array.isArray(dados.clientes)) throw new Error();
     if (!confirm(`Restaurar backup de ${dataBR(dados.criadoEm)}? Os dados atuais deste aparelho serão substituídos.`)) return;
     for (const k of CHAVES_BACKUP) if (dados[k] != null) db.set(k, dados[k]);
     localStorage.setItem('ag_semeado', '1');

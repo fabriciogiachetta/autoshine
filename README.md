@@ -1,4 +1,4 @@
-# EstetiApp — App de Estética Automotiva para Android
+# Auto Shine — App de Gestão de Estética Automotiva
 
 App para o dono da estética fazer tudo pelo celular:
 
@@ -34,28 +34,28 @@ Os arquivos da logo ficam na pasta `marca` (fora do app), para usar em redes soc
 ## 1. Publicar grátis no GitHub Pages
 
 1. Crie uma conta em <https://github.com>.
-2. **New repository** → nome, ex.: `estetiapp` → **Public** → **Create repository**.
+2. **New repository** → nome, ex.: `autoshine` → **Public** → **Create repository**.
 3. Clique em **uploading an existing file** e arraste **todo o conteúdo desta pasta**
    (inclusive a pasta `icons`). Clique em **Commit changes**.
 4. **Settings → Pages** → *Source*: **Deploy from a branch** → *Branch*: **main** / **(root)** → **Save**.
-5. Em 1–2 minutos o app estará em `https://SEU-USUARIO.github.io/estetiapp/`.
+5. Em 1–2 minutos o app estará em `https://fabriciogiachetta.github.io/autoshine/`.
 
 
 ## 2. Usar o seu domínio da GoDaddy
 
-Recomendado: um subdomínio, ex.: `app.meudominio.com.br`.
+Recomendado: um subdomínio, ex.: `app.autoshineapp.com`.
 
-1. Renomeie o arquivo `CNAME.exemplo` para **`CNAME`** e coloque nele só o seu domínio (ex.: `app.meudominio.com.br`).
+1. O arquivo **`CNAME`** desta pasta já contém `app.autoshineapp.com`.
 2. No GitHub: **Settings → Pages → Custom domain** → mesmo domínio → **Save**.
 3. Na GoDaddy: **Meus produtos → seu domínio → DNS → Adicionar registro**:
 
 | Tipo  | Nome | Valor                   |
 |-------|------|-------------------------|
-| CNAME | app  | `SEU-USUARIO.github.io` |
+| CNAME | app  | `fabriciogiachetta.github.io` |
 
-Para usar o domínio principal (`meudominio.com.br`), crie 4 registros **A** com nome `@`
+Para usar o domínio principal (`autoshineapp.com`), crie 4 registros **A** com nome `@`
 apontando para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`
-(apague antes o registro A "Parked" da GoDaddy), e um **CNAME** `www` → `SEU-USUARIO.github.io`.
+(apague antes o registro A "Parked" da GoDaddy), e um **CNAME** `www` → `fabriciogiachetta.github.io`.
 
 4. Depois que o GitHub mostrar "DNS check successful", marque **Enforce HTTPS**
    (o HTTPS é obrigatório para o app poder ser instalado).
@@ -64,14 +64,14 @@ apontando para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.19
 
 1. Abra o endereço do app no **Google Chrome** do celular.
 2. Toque no botão **⬇** no topo do app, ou no menu **⋮ → Instalar app**.
-3. Pronto: o ícone do EstetiApp aparece na tela inicial.
+3. Pronto: o ícone do Auto Shine aparece na tela inicial.
 4. No primeiro acesso, crie seu usuário e senha.
 5. Em **Mais › Dados da empresa**, coloque o nome da estética e a chave Pix (aparecem no recibo).
 
 ## 4. Publicar na Google Play Store
 
 O app vai para a loja como um **TWA** (Trusted Web Activity): um app Android de verdade
-que abre o EstetiApp em tela cheia. Tudo que você atualizar no GitHub aparece no app
+que abre o Auto Shine em tela cheia. Tudo que você atualizar no GitHub aparece no app
 da loja automaticamente, sem precisar enviar nova versão.
 
 ### 4.1 Antes de começar
@@ -80,10 +80,10 @@ da loja automaticamente, sem precisar enviar nova versão.
 - Em `privacidade.html`, troque `SEU-EMAIL@exemplo.com` pelo seu e-mail de contato e envie para o GitHub.
 
 ### 4.2 Gerar o pacote Android (grátis)
-1. Acesse <https://www.pwabuilder.com>, cole o endereço do app (ex.: `https://app.meudominio.com.br`) e clique **Start**.
+1. Acesse <https://www.pwabuilder.com>, cole o endereço do app (ex.: `https://app.autoshineapp.com`) e clique **Start**.
 2. Clique em **Package for stores → Android → Generate Package**. Confira:
-   - **Package ID:** `com.estetiapp.app` (é o identificador permanente do app na loja)
-   - **App name:** `EstetiApp`
+   - **Package ID:** `com.autoshineapp.app` (é o identificador permanente do app na loja)
+   - **App name:** `Auto Shine`
    - **Signing key:** *Create new* → preencha seus dados e **anote as senhas**
 3. Baixe o `.zip`. Dentro dele estão:
    - `*.aab` → o arquivo que vai para a Play Store
@@ -92,19 +92,19 @@ da loja automaticamente, sem precisar enviar nova versão.
    - `assetlinks.json` → prova que o app e o site são seus
 4. Abra o `assetlinks.json` do zip, copie o conteúdo para o arquivo `.well-known/assetlinks.json`
    desta pasta (substituindo o modelo) e envie para o GitHub.
-   Confira abrindo `https://SEU-DOMINIO/.well-known/assetlinks.json` no navegador.
+   Confira abrindo `https://app.autoshineapp.com/.well-known/assetlinks.json` no navegador.
    *(Se esse passo faltar, o app abre com uma barra de endereço no topo.)*
 
 ### 4.3 Conta e envio na Play Console
 1. Crie a conta em <https://play.google.com/console> (taxa única de **US$ 25**, com verificação de identidade).
-2. **Criar app** → nome `EstetiApp`, idioma Português (Brasil), **App**, **Gratuito**.
+2. **Criar app** → nome `Auto Shine`, idioma Português (Brasil), **App**, **Gratuito**.
 3. **Página da loja** — use os arquivos da pasta `loja-playstore`:
    - Ícone: `icone-loja-512.png`
    - Gráfico de destaque: `destaque-1024x500.png`
    - Capturas de tela: tire pelo menos 2 prints do app no seu celular (Início, Agenda, Vender…)
    - Descrição curta (até 80 caracteres): *Agenda, vendas, clientes e estoque da sua estética automotiva.*
 4. **Conteúdo do app**:
-   - Política de privacidade: `https://SEU-DOMINIO/privacidade.html`
+   - Política de privacidade: `https://app.autoshineapp.com/privacidade.html`
    - Segurança dos dados: o app **não coleta nem compartilha dados** (tudo fica no aparelho)
    - Classificação de conteúdo: responda o questionário (app de produtividade/negócios, livre)
    - Público-alvo: maiores de 18 anos · Anúncios: **não**
