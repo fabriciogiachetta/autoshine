@@ -77,7 +77,7 @@ da loja automaticamente, sem precisar enviar nova versão.
 ### 4.1 Antes de começar
 - O app precisa estar publicado **no seu domínio com HTTPS** (passos 1 e 2).
   Use o domínio da GoDaddy: se um dia trocar de endereço, o app da loja para de funcionar.
-- Em `privacidade.html`, troque `SEU-EMAIL@exemplo.com` pelo seu e-mail de contato e envie para o GitHub.
+- O e-mail de contato da política de privacidade é `autoshine.app@outlook.com`.
 
 ### 4.2 Gerar o pacote Android (grátis)
 1. Acesse <https://www.pwabuilder.com>, cole o endereço do app (ex.: `https://app.autoshineapp.com`) e clique **Start**.
