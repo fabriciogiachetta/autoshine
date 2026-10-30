@@ -1,10 +1,8 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.autoshineapp.app",
-      "sha256_cert_fingerprints": ["COLE_AQUI_A_IMPRESSAO_SHA256_GERADA_PELO_PWABUILDER"]
-    }
-  }
-]
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.autoshineapp.app",
+        "sha256_cert_fingerprints": ["9B:DA:65:23:1F:B0:94:85:3B:FD:B1:82:D4:09:D7:9F:D5:B9:FF:44:4C:EF:E3:48:93:BD:38:48:4D:41:26:7F"]
+      }
+    }]
