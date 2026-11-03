@@ -24,12 +24,14 @@ Android instala como um app normal (ícone na tela inicial, tela cheia, sem barr
 
 ## Marca
 
-Os arquivos da logo ficam na pasta `marca` (fora do app), para usar em redes sociais, cartões e fachada:
+O app usa a mesma identidade do site **autoshineapp.com**:
 
-- `logo-icone.svg` / `logo-icone-1024.png` — símbolo (perfil do carro no anel)
-- `logo-horizontal.svg` / `.png` — símbolo + nome, para fundo claro
-- `logo-horizontal-fundo-escuro.svg` / `.png` — para fundo escuro
-- Cores: azul-marinho `#0B1A33`, azul `#1E6DFF`, azul-claro `#6FA8FF`
+- Logo oficial (carro azul com asas): os arquivos ficam na pasta `marca/oficial`, fora do app
+  - `emblema.png`: só o símbolo (é o que vai no ícone do app)
+  - `logo-autoshine.png`: o símbolo com o nome "Auto Shine"
+  - `icone-1024.png`: o ícone quadrado
+- Cores: preto `#05050A`, cartões `#111120`, laranja `#F5A623` → `#FF6B1A` (degradê), azul `#3B82F6`
+- Fontes: **Orbitron** (títulos) e **Rajdhani** (textos), do Google Fonts
 
 ## 1. Publicar grátis no GitHub Pages
 

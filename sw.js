@@ -1,7 +1,7 @@
 // Service worker: deixa o app abrir mesmo sem internet.
 // Rede primeiro (para pegar atualizações); se estiver offline, usa a cópia salva.
-const CACHE = 'autoshine-v5';
-const ARQUIVOS = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/logo.svg'];
+const CACHE = 'autoshine-v6';
+const ARQUIVOS = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/logo-autoshine.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ARQUIVOS)));
